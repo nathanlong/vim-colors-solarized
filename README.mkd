@@ -2,13 +2,14 @@ Solarized Colorscheme for Vim
 =============================
 
 Developed by Ethan Schoonover <es@ethanschoonover.com>
+
 Modified by Nathan Long.
 
 Visit the [original full repo], the [vim-only repo] or the [Solarized Homepage] for info on the original
 theme.
 
 [Solarized homepage]:   http://ethanschoonover.com/solarized
-[original]: https://github.com/altercation/solarized
+[original full repo]: https://github.com/altercation/solarized
 [vim-only repo]:  https://github.com/altercation/vim-colors-solarized
 
 Installation

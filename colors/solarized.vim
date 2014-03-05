@@ -242,6 +242,7 @@ let colors_name = "solarized"
 " neutral gray monotone palette component)
 if (has("gui_running") && g:solarized_degrade == 0)
     let s:vmode       = "gui"
+    let s:base04      = "#00252e"
     let s:base03      = "#002b36"
     let s:base02      = "#073642"
     let s:base01      = "#586e75"
@@ -250,6 +251,7 @@ if (has("gui_running") && g:solarized_degrade == 0)
     let s:base1       = "#93a1a1"
     let s:base2       = "#eee8d5"
     let s:base3       = "#fdf6e3"
+    let s:base4       = "#fefcf5"
     let s:yellow      = "#b58900"
     let s:orange      = "#cb4b16"
     let s:red         = "#dc322f"
@@ -264,6 +266,7 @@ elseif (has("gui_running") && g:solarized_degrade == 1)
     " while in gui mode via "let g:solarized_degrade=1", though this is not
     " recommened and is for testing only.
     let s:vmode       = "gui"
+    let s:base04      = "#001933"
     let s:base03      = "#1c1c1c"
     let s:base02      = "#262626"
     let s:base01      = "#4e4e4e"
@@ -272,6 +275,7 @@ elseif (has("gui_running") && g:solarized_degrade == 1)
     let s:base1       = "#8a8a8a"
     let s:base2       = "#d7d7af"
     let s:base3       = "#ffffd7"
+    let s:base4       = "#ffffff"
     let s:yellow      = "#af8700"
     let s:orange      = "#d75f00"
     let s:red         = "#af0000"
@@ -282,6 +286,7 @@ elseif (has("gui_running") && g:solarized_degrade == 1)
     let s:green       = "#5f8700"
 elseif g:solarized_termcolors != 256 && &t_Co >= 16
     let s:vmode       = "cterm"
+    let s:base04      = "0"
     let s:base03      = "8"
     let s:base02      = "0"
     let s:base01      = "10"
@@ -290,6 +295,7 @@ elseif g:solarized_termcolors != 256 && &t_Co >= 16
     let s:base1       = "14"
     let s:base2       = "7"
     let s:base3       = "15"
+    let s:base4       = "15"
     let s:yellow      = "3"
     let s:orange      = "9"
     let s:red         = "1"
@@ -300,6 +306,7 @@ elseif g:solarized_termcolors != 256 && &t_Co >= 16
     let s:green       = "2"
 elseif g:solarized_termcolors == 256
     let s:vmode       = "cterm"
+    let s:base04      = "233"
     let s:base03      = "234"
     let s:base02      = "235"
     let s:base01      = "239"
@@ -308,6 +315,7 @@ elseif g:solarized_termcolors == 256
     let s:base1       = "245"
     let s:base2       = "187"
     let s:base3       = "230"
+    let s:base4       = "231"
     let s:yellow      = "136"
     let s:orange      = "166"
     let s:red         = "124"
@@ -335,6 +343,7 @@ else
 "   let s:blue        = "4"
 "   let s:cyan        = "6"
 "   let s:green       = "2"
+    let s:base04      = "DarkGray"      " 0*
     let s:base03      = "DarkGray"      " 0*
     let s:base02      = "Black"         " 0
     let s:base01      = "LightGreen"    " 2*
@@ -343,6 +352,7 @@ else
     let s:base1       = "LightCyan"     " 6*
     let s:base2       = "LightGray"     " 7
     let s:base3       = "White"         " 7*
+    let s:base4       = "White"         " 7*
     let s:yellow      = "DarkYellow"    " 3
     let s:orange      = "LightRed"      " 1*
     let s:red         = "DarkRed"       " 1
@@ -377,10 +387,12 @@ endif
 " Alternate light scheme "{{{
 " ---------------------------------------------------------------------
 if &background == "light"
+    let s:temp04      = s:base04
     let s:temp03      = s:base03
     let s:temp02      = s:base02
     let s:temp01      = s:base01
     let s:temp00      = s:base00
+    let s:base04      = s:base4
     let s:base03      = s:base3
     let s:base02      = s:base2
     let s:base01      = s:base1
@@ -436,6 +448,7 @@ endif
 
 exe "let s:bg_none      = ' ".s:vmode."bg=".s:none   ."'"
 exe "let s:bg_back      = ' ".s:vmode."bg=".s:back   ."'"
+exe "let s:bg_base04    = ' ".s:vmode."bg=".s:base04 ."'"
 exe "let s:bg_base03    = ' ".s:vmode."bg=".s:base03 ."'"
 exe "let s:bg_base02    = ' ".s:vmode."bg=".s:base02 ."'"
 exe "let s:bg_base01    = ' ".s:vmode."bg=".s:base01 ."'"
@@ -455,6 +468,7 @@ exe "let s:bg_cyan      = ' ".s:vmode."bg=".s:cyan   ."'"
 
 exe "let s:fg_none      = ' ".s:vmode."fg=".s:none   ."'"
 exe "let s:fg_back      = ' ".s:vmode."fg=".s:back   ."'"
+exe "let s:fg_base04    = ' ".s:vmode."fg=".s:base04 ."'"
 exe "let s:fg_base03    = ' ".s:vmode."fg=".s:base03 ."'"
 exe "let s:fg_base02    = ' ".s:vmode."fg=".s:base02 ."'"
 exe "let s:fg_base01    = ' ".s:vmode."fg=".s:base01 ."'"
@@ -493,6 +507,7 @@ exe "let s:fmt_revbbu   = ' ".s:vmode."=NONE".s:r.s:bb.s:u." term=NONE".s:r.s:bb
 if has("gui_running")
     exe "let s:sp_none      = ' guisp=".s:none   ."'"
     exe "let s:sp_back      = ' guisp=".s:back   ."'"
+    exe "let s:sp_base04    = ' guisp=".s:base04 ."'"
     exe "let s:sp_base03    = ' guisp=".s:base03 ."'"
     exe "let s:sp_base02    = ' guisp=".s:base02 ."'"
     exe "let s:sp_base01    = ' guisp=".s:base01 ."'"
@@ -512,6 +527,7 @@ if has("gui_running")
 else
     let s:sp_none      = ""
     let s:sp_back      = ""
+    let s:sp_base04    = ""
     let s:sp_base03    = ""
     let s:sp_base02    = ""
     let s:sp_base01    = ""
@@ -609,8 +625,8 @@ else
     exe "hi! SpecialKey" .s:fmt_bold   .s:fg_base01 .s:bg_none
     exe "hi! NonText"    .s:fmt_bold   .s:fg_base00 .s:bg_none
 endif
-exe "hi! StatusLine"     .s:fmt_none   .s:fg_base02 .s:bg_base1  .s:fmt_revbb
-exe "hi! StatusLineNC"   .s:fmt_none   .s:fg_base02 .s:bg_base00 .s:fmt_revbb
+exe "hi! StatusLine"     .s:fmt_none   .s:fg_base04 .s:bg_base1  .s:fmt_revbb
+exe "hi! StatusLineNC"   .s:fmt_none   .s:fg_base04 .s:bg_base01  .s:fmt_revbb
 exe "hi! Visual"         .s:fmt_none   .s:fg_base01 .s:bg_base03 .s:fmt_revbb
 exe "hi! Directory"      .s:fmt_none   .s:fg_blue   .s:bg_none
 exe "hi! ErrorMsg"       .s:fmt_revr   .s:fg_red    .s:bg_none
@@ -621,9 +637,9 @@ exe "hi! ModeMsg"        .s:fmt_none   .s:fg_blue   .s:bg_none
 exe "hi! LineNr"         .s:fmt_none   .s:fg_base01 .s:bg_base02
 exe "hi! Question"       .s:fmt_bold   .s:fg_cyan   .s:bg_none
 if ( has("gui_running") || &t_Co > 8 )
-    exe "hi! VertSplit"  .s:fmt_none   .s:fg_base00 .s:bg_base00
+    exe "hi! VertSplit"  .s:fmt_none   .s:fg_base04 .s:bg_base04
 else
-    exe "hi! VertSplit"  .s:fmt_revbb  .s:fg_base00 .s:bg_base02
+    exe "hi! VertSplit"  .s:fmt_revbb  .s:fg_base04 .s:bg_base04
 endif
 exe "hi! Title"          .s:fmt_bold   .s:fg_orange .s:bg_none
 exe "hi! VisualNOS"      .s:fmt_stnd   .s:fg_none   .s:bg_base02 .s:fmt_revbb
@@ -1116,3 +1132,4 @@ autocmd ColorScheme * if g:colors_name != "solarized" | silent! aunmenu Solarize
 "
 " vim:foldmethod=marker:foldlevel=0
 "}}}
+
